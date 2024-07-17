@@ -1,0 +1,108 @@
+:root {
+  /* colors */
+  --color-black-100: #191919;
+  --color-grey-100: #6e6e6e;
+  --color-white-100: #fff;
+  --color-purple-40: #f5f0ff;
+  --color-purple-50: #e7dbfd;
+  --color-purple-60: #d0baf7;
+  --color-purple-70: #ba9af1;
+  --color-purple-80: #a57bec;
+  --color-purple-90: #915de6;
+  --color-purple-100: #7f42e1;
+  --color-amaranth-40: #fce8f5;
+  --color-amaranth-50: #f6d1e9;
+  --color-amaranth-60: #e4a7d0;
+  --color-amaranth-70: #d481b9;
+  --color-amaranth-80: #c460a5;
+  --color-amaranth-90: #b44292;
+  --color-amaranth-100: #a32881;
+  --color-teal-40: #e6f7fa;
+  --color-teal-50: #cdecf1;
+  --color-teal-60: #9fd2da;
+  --color-teal-70: #75b7c1;
+  --color-teal-80: #529da9;
+  --color-teal-90: #348490;
+  --color-teal-100: #1d6b77;
+  --color-herbal-40: #e6faf0;
+  --color-herbal-50: #ccf1de;
+  --color-herbal-60: #96ddb9;
+  --color-herbal-70: #66c797;
+  --color-herbal-80: #3db279;
+  --color-herbal-90: #1b9d5f;
+  --color-herbal-100: #008749;
+  --color-orange-40: #fcefeb;
+  --color-orange-50: #f9ded6;
+  --color-orange-60: #f3bcab;
+  --color-orange-70: #ec9b81;
+  --color-orange-80: #e47d5a;
+  --color-orange-90: #dd6034;
+  --color-orange-100: #d74611;
+
+  /*width*/
+  --maxWidth: 1440px;
+  --maxWidthContainer: 1280px;
+  /* from 768 to 1280 */
+  --middleWidth: 1279.9px;
+  /* from 320 to 768 */
+  --minWidth: 767.9px;
+}
+
+*,
+*::before,
+*::after,
+h1 {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #f4f4f4;
+}
+
+#root {
+  min-height: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 40px;
+  max-width: var(--maxWidth);
+
+  @media (max-width: var(--minWidth)) {
+    padding: 0 10px;
+  }
+}
+
+.visuallyHidden {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  opacity: 0;
+}
+
+.listReset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
