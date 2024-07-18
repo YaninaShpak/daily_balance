@@ -36,8 +36,8 @@ export const initialMoneySlice = createSlice({
   name: 'initialMoney',
   initialState,
   reducers: {
-    setIncome: (state, action: PayloadAction<number>) => {
-      state.dailyBudget = action.payload;
+    setIncome: (state, action: PayloadAction<MoneyItem[]>) => {
+      state.income = action.payload;
     },
   },
 })
