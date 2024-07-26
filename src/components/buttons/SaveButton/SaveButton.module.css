@@ -1,0 +1,12 @@
+.root {
+  grid-column: 1 / 2;
+  align-self: start;
+  justify-self: start;
+  padding: 1rem 2rem;
+  font-size: 18px;
+  color: var(--color-white-100);
+  background: linear-gradient(135deg, var(--color-purple-90), var(--color-purple-100));
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
