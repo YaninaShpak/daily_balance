@@ -1,31 +1,39 @@
-import { FC } from 'react';
+import { MoneyItem } from '../../redux/slices/initialMoneySlice';
+import AddButton from '../buttons/AddButton/AddButton';
 import styles from './EditableList.module.css'
-import { InitialMoneyState, MoneyItem } from '../../redux/slices/initialMoneySlice'
-import MoneyTextInput from '../inputs/MoneyTextInput/MoneyTextInput'
-import { useAppDispatch } from '../../hooks';
+import { useDispatch } from 'react-redux';
+import { FC } from 'react';
+import { Action } from '@reduxjs/toolkit';
+import MoneyTextInput from '../inputs/MoneyTextInput/MoneyTextInput';
+import MoneyAmountInput from '../inputs/MoneyAmountInput/MoneyAmountInput';
+import RemoveButton from '../buttons/RemoveButton/RemoveButton';
 
+// Интерфейс для props компонента
 interface EditableListProps {
   title: string,
-  items: InitialMoneyState['income'],
-  total: number,
-  setFunction: (items: InitialMoneyState['income']) => void
+  items: MoneyItem[],
+  setFunction: (items: MoneyItem[]) => Action
 }
 
-interface ItemChange {
-  index: number,
-  value: string,
-  field: string,
-  stateItems: InitialMoneyState['income'],
-  stateFunction: (items: InitialMoneyState['income']) => void
-}
+// Типы для аргументов функций
+type HandleItemChangeFunction = (index: number, field: string, value: string | number) => void
 
-const EditableList: FC<EditableListProps> = ({ title, items, total, setFunction }) => {
-  const dispatch = useAppDispatch();
+const EditableList: FC<EditableListProps> = ({title, items, setFunction }) => {
+  const dispatch = useDispatch();
 
-  const handleItemChange = ({index, field, value, stateItems, stateFunction}: ItemChange) => {
-    const newState = [...stateItems];
+  const handleItemChange: HandleItemChangeFunction = (index, field, value) => {
+    const newState = [...items];
     newState[index] = { ...newState[index], ...{ [field]: value } };
-    dispatch(stateFunction(newState));
+    dispatch(setFunction(newState));
+  };
+
+  const handleAmountChange = (index: number, value: string) => {
+    const numberValue = Number(value);
+    if (!isNaN(numberValue)) {
+      handleItemChange(index, "amount", numberValue)
+    } else {
+      alert('Ошибка')
+    }
   };
 
   return (
@@ -34,20 +42,18 @@ const EditableList: FC<EditableListProps> = ({ title, items, total, setFunction 
       <ul className={`listReset ${styles.list}`}>
         {items.map((el, index) => (
           <li className={styles.item} key={index}>
-            <MoneyTextInput 
-              value={el.titleInput} 
-              handleFunction={(e) => handleItemChange({
-                index: index,
-                field: "titleInput",
-                value: e,
-                stateItems: items,
-                stateFunction: setFunction
-              })} 
-              placeholder='Название' />
+            <MoneyTextInput value={el.titleInput} handleFunction={(e) => handleItemChange(
+              index,
+              "titleInput",
+              e.target.value)} />
+            <MoneyAmountInput value={el.amount} handleFunction={(e) => handleAmountChange(
+              index,
+              e.target.value)} />
+            <RemoveButton items={items} setFunction={setFunction} index={index}/>
           </li>
         ))}
       </ul>
-      <p>Итого: {total} ₽</p>
+      <AddButton items={items} setFunction={setFunction} />
     </section>
   );
 };
