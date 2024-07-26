@@ -1,0 +1,12 @@
+.root {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: var(--color-purple-50);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 50vw;
+}
