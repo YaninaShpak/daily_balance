@@ -1,20 +1,19 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import styles from './MoneyTextInput.module.css'
 
 interface MoneyTextInputProps {
-  value: string | number,
-  placeholder: string,
-  handleFunction: (e: string) => void
+  value: string,
+  handleFunction: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const MoneyTextInput: FC<MoneyTextInputProps> = ({value, placeholder, handleFunction}) => {
+const MoneyTextInput: FC<MoneyTextInputProps> = ({value, handleFunction}) => {
   return (
     <input
       className={styles.root}
       type="text"
+      placeholder="Название"
       value={value}
-      onChange={(e) => handleFunction(e.target.value)}
-      placeholder={placeholder}
+      onChange={handleFunction}
     />
   );
 };
