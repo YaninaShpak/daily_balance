@@ -1,24 +1,27 @@
-import { MoneyItem } from '../../redux/slices/initialMoneySlice';
-import AddButton from '../buttons/AddButton/AddButton';
-import styles from './EditableList.module.css'
-import { useDispatch } from 'react-redux';
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { Action } from '@reduxjs/toolkit';
+import { MoneyItem } from '../../redux/slices/initialMoneySlice';
+
+import AddButton from '../buttons/AddButton/AddButton';
+import RemoveButton from '../buttons/RemoveButton/RemoveButton';
 import MoneyTextInput from '../inputs/MoneyTextInput/MoneyTextInput';
 import MoneyAmountInput from '../inputs/MoneyAmountInput/MoneyAmountInput';
-import RemoveButton from '../buttons/RemoveButton/RemoveButton';
+
+import styles from './EditableList.module.css'
 
 // Интерфейс для props компонента
 interface EditableListProps {
   title: string,
   items: MoneyItem[],
-  setFunction: (items: MoneyItem[]) => Action
+  setFunction: (items: MoneyItem[]) => Action,
+  total: number
 }
 
 // Типы для аргументов функций
 type HandleItemChangeFunction = (index: number, field: string, value: string | number) => void
 
-const EditableList: FC<EditableListProps> = ({title, items, setFunction }) => {
+const EditableList: FC<EditableListProps> = ({ title, items, setFunction, total }) => {
   const dispatch = useDispatch();
 
   const handleItemChange: HandleItemChangeFunction = (index, field, value) => {
@@ -38,7 +41,7 @@ const EditableList: FC<EditableListProps> = ({title, items, setFunction }) => {
 
   return (
     <section className={styles.root}>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className="title">{title}</h2>
       <ul className={`listReset ${styles.list}`}>
         {items.map((el, index) => (
           <li className={styles.item} key={index}>
@@ -46,14 +49,15 @@ const EditableList: FC<EditableListProps> = ({title, items, setFunction }) => {
               index,
               "titleInput",
               e.target.value)} />
-            <MoneyAmountInput value={el.amount} handleFunction={(e) => handleAmountChange(
+            <MoneyAmountInput value={el.amount} handleFunction={(value) => handleAmountChange(
               index,
-              e.target.value)} />
+              value)} />
             <RemoveButton items={items} setFunction={setFunction} index={index}/>
           </li>
         ))}
       </ul>
       <AddButton items={items} setFunction={setFunction} />
+      <p><span className={styles.textUnderline}>Итого:</span> {total.toLocaleString('ru-RU')} ₽</p>
     </section>
   );
 };
