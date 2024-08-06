@@ -26,7 +26,8 @@ const MoneyAmountInput: FC<MoneyAmountInputProps> = ({value, handleFunction}) =>
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.search(/[^0-9]/ig) !== -1) {
+    const regexp = /[^0-9]\S/i;
+    if (!regexp.test(e.target.value)) {
       setIsError(true)
     }
     const formatted = formatNumber(e.target.value)
