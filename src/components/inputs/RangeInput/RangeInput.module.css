@@ -34,7 +34,7 @@
 }
 
 .root::-moz-range-progress {
-  background: var(--color-purple-100);
   height: 8px;
+  background: var(--color-purple-100);
   border-radius: 5px;
 }
