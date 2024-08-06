@@ -1,9 +1,10 @@
-import { Trash2 } from 'lucide-react';
-import styles from "./RemoveButton.module.css";
-import { MoneyItem } from '../../../redux/slices/initialMoneySlice';
 import { FC } from 'react';
 import { useAppDispatch } from '../../../hooks';
+import { MoneyItem } from '../../../redux/slices/initialMoneySlice';
 import { Action } from '@reduxjs/toolkit';
+
+import { Trash2 } from 'lucide-react';
+import styles from "./RemoveButton.module.css";
 
 interface RemoveButtonProps {
   items: MoneyItem[],
@@ -19,8 +20,8 @@ const RemoveButton: FC<RemoveButtonProps> = ({items, setFunction, index}) => {
   };
 
   return (
-    <button className={styles.root} onClick={removeItem} title='Удалить'>
-      <Trash2 color='#6e6e6e'/>
+    <button className={styles.root} onClick={removeItem} title="Удалить">
+      <Trash2 color="#6e6e6e"/>
     </button>
   );
 };

@@ -1,11 +1,12 @@
 import { CSSProperties } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { setSavings } from "../../../redux/slices/initialMoneySlice";
+
 import styles from "./RangeInput.module.css";
 
 const RangeInput = () => {
   const dispatch = useAppDispatch();
-  const {totalResult, savings} = useAppSelector((state) => state.initialMoney);
+  const { totalResult, savings } = useAppSelector((state) => state.initialMoney);
 
   return (
     <input className={styles.root}

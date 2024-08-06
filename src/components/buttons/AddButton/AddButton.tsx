@@ -1,8 +1,9 @@
 import { FC } from "react";
-import styles from "./AddButton.module.css";
+import { useAppDispatch } from "../../../hooks";
 import { MoneyItem } from "../../../redux/slices/initialMoneySlice";
 import { Action } from "@reduxjs/toolkit";
-import { useAppDispatch } from "../../../hooks";
+
+import styles from "./AddButton.module.css";
 
 interface AddButtonProps {
   items: MoneyItem[],
