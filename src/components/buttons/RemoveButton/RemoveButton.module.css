@@ -1,7 +1,24 @@
 .root {
+  position: absolute;
+  top: 6px;
+  right: -35px;
+
   display: grid;
   place-items: center;
-  cursor: pointer;
+
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .root svg:hover {
+    stroke: var(--color-orange-100);
+  }
+}
+
+@media (max-width: 1115px) {
+  .root {
+    right: calc(-26px + (-35 - (-26)) * ((100vw - 320px) / (1115 - 320)));
+  }
 }
